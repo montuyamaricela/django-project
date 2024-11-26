@@ -1,25 +1,254 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
   <head>
-    {% load static %} <!-- Add this line to load static files -->
+    {% load static %}
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block title %}Default Title{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
- 
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="{% static 'images/favicon-32x32.png' %}"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            backgroundImage: {
+              "hero-pattern": `url('{% static "images/background/hero-bg.png" %}')`,
+              "hero-articles": `url('{% static "images/background/articles-hero-bg.png" %}')`,
+            },
+            dropShadow: {
+              "3xl": "0 4px 4px rgba(0, 0, 0, 0.4)",
+            },
+            fontFamily: {
+              sans: ["Fredoka", "sans-serif"],
+            },
+            colors: {
+              primary: {
+                green: "#267400",
+                lightGreen: "#7CB560",
+                yellow: "#F7C948",
+                text: "#484646",
+                textDark: "#1E1E1E",
+              },
+            },
+          },
+        },
+      };
+
+      function toggleMenu() {
+        const menu = document.getElementById("mobileMenu");
+        const overlay = document.getElementById("overlay");
+
+        menu.classList.toggle("-translate-x-full");
+        overlay.classList.toggle("hidden");
+      }
+    </script>
   </head>
-  <body>
-    <section class="navigationbar ">
-      <a href="/">Home</a>
-      <a href="about">About</a>
-      <a href="contact">Contact</a>
-      
+  <body class="relative">
+    <section class="border-b-2 border-primary-green/20">
+      <div
+        class="flex py-5 items-center justify-between container mx-auto lg:px-5 xl:px-10"
+      >
+        <a href="/">
+          <img
+            src="{% static 'images/logo.svg'%}"
+            alt=""
+            class="w-28 md:w-auto"
+          />
+        </a>
+
+        <div
+          class="hidden md:flex gap-10 items-center text-primary-green font-semibold"
+          id="menu"
+        >
+          <a
+            href="/"
+            class="{% if request.path == '/' %}border-primary-yellow{% else %}border-transparent{% endif %} hover:border-primary-yellow border-b-2 transition-all ease-in-out duration-500"
+          >
+            Home
+          </a>
+          <a
+            href="/about"
+            class="{% if request.path == '/about' %}border-primary-yellow{% else %}border-transparent{% endif %} hover:border-primary-yellow border-b-2 transition-all ease-in-out duration-500"
+          >
+            About
+          </a>
+          <a
+            href="/articles"
+            class="{% if request.path == '/articles' %}border-primary-yellow{% else %}border-transparent{% endif %} hover:border-primary-yellow border-b-2 transition-all ease-in-out duration-500"
+          >
+            Articles
+          </a>
+          <a
+            href="/activities"
+            class="{% if request.path == '/activities' %}border-primary-yellow{% else %}border-transparent{% endif %} hover:border-primary-yellow border-b-2 transition-all ease-in-out duration-500"
+          >
+            Activities
+          </a>
+          <a
+            href="/multimedia"
+            class="{% if request.path == '/multimedia' %}border-primary-yellow{% else %}border-transparent{% endif %} hover:border-primary-yellow border-b-2 transition-all ease-in-out duration-500"
+          >
+            Multimedia
+          </a>
+        </div>
+        <div class="hidden md:flex">
+          <button
+            class="bg-primary-yellow rounded-full py-2 px-6 drop-shadow-3xl hover:scale-110 transition-all ease-in-out duration-500"
+          >
+            <a href="contact" class="text-primary-text font-semibold"
+              >Contact Us</a
+            >
+          </button>
+        </div>
+
+        <div class="md:hidden flex items-center">
+          <button
+            class="text-primary-green focus:outline-none"
+            onclick="toggleMenu()"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              class="w-8 h-8"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="3"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
     </section>
-    <section class="container">
+
+    <div
+      id="overlay"
+      class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden"
+      onclick="toggleMenu()"
+    ></div>
+
+    <div
+      id="mobileMenu"
+      class="fixed top-0 left-0 w-3/4 max-w-sm h-full bg-white z-50 -translate-x-full transform transition-transform duration-300"
+    >
+      <button
+        class="text-primary-green absolute top-5 right-5"
+        onclick="toggleMenu()"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          class="w-6 h-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="3"
+            d="M6 18L18 6M6 6l12 12"
+          />
+        </svg>
+      </button>
+      <a href="/">
+        <img
+          src="{% static 'images/logo.svg'%}"
+          alt=""
+          class="w-28 md:w-auto absolute top-5 left-5"
+        />
+      </a>
+      <nav class="mt-24 space-y-4 px-6 text-primary-green font-semibold">
+        <a href="/" class="block py-2">Home</a>
+        <a href="about" class="block py-2">About</a>
+        <a href="articles" class="block py-2">Articles</a>
+        <a href="" class="block py-2">Activities</a>
+        <a href="" class="block py-2">Multimedia</a>
+        <button
+          class="bg-primary-yellow rounded-full py-2 px-6 drop-shadow-3xl hover:scale-110 transition-all ease-in-out duration-500"
+        >
+          <a href="contact" class="text-primary-text font-semibold"
+            >Contact Us</a
+          >
+        </button>
+      </nav>
+    </div>
+
+    <section>
       {% block content %}
       <!-- Content here -->
       {% endblock %}
     </section>
-  
+
+    <section class="">
+      <div
+        class="container mx-auto px-5 xl:px-0 py-16 text-primary-text relative"
+      >
+        <div class="grid grid-cols-3 gap-5 lg:w-2/4 xl:w-2/5 mx-auto">
+          <a
+            href="activity"
+            class="hover:scale-105 hover:drop-shadow-3xl transition-all ease-in-out duration-500 flex flex-col gap-2 items-center bg-primary-lightGreen border-4 border-primary-green rounded-xl p-5"
+          >
+            <img
+              src="{% static 'images/icons/game.svg' %}"
+              alt=""
+              class="mx-auto w-20"
+            />
+            <span
+              class="text-primary-textDark font-semibold text-lg text-center"
+              >Games</span
+            >
+          </a>
+          <a
+            href="articles"
+            class="hover:scale-105 hover:drop-shadow-3xl transition-all ease-in-out duration-500 flex flex-col gap-2 items-center bg-primary-lightGreen border-4 border-primary-green rounded-xl p-5"
+          >
+            <img
+              src="{% static 'images/icons/articles-icon.svg' %}"
+              alt=""
+              class="mx-auto w-20"
+            />
+            <span
+              class="text-primary-textDark font-semibold text-lg text-center"
+              >Articles</span
+            >
+          </a>
+          <a
+            href="multimedia"
+            class="hover:scale-105 hover:drop-shadow-3xl transition-all ease-in-out duration-500 flex flex-col gap-2 items-center bg-primary-lightGreen border-4 border-primary-green rounded-xl p-5"
+          >
+            <img
+              src="{% static 'images/icons/multimedia-icon.svg' %}"
+              alt=""
+              class="mx-auto w-20"
+            />
+            <span
+              class="text-primary-textDark font-semibold text-lg text-center"
+              >Multimedia</span
+            >
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      AOS.init();
+    </script>
   </body>
 </html>

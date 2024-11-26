@@ -8,6 +8,14 @@ def home(request):
 def about(request):
     return render(request, 'about.html')
 
-
 def contact(request):
     return render(request, 'contact.html')
+
+def articles(request):
+    return render(request, 'articles.html')
+
+def activities(request):
+    return render(request, 'activities.html')
+    
+def multimedia(request):
+    return render(request, 'multimedia.html')
