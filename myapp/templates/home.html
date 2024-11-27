@@ -6,11 +6,14 @@
 
 {% block content %}
 
-<section class="">
+
+<!-- Hero section -->
+<section class="my-auto">
   <div
-    class="container mx-auto px-5 xl:px-0 py-16 sm:py-20 md:py-32 lg:py-40 text-primary-green relative"
+    class="container mx-auto px-5 xl:px-0 py-16 sm:py-20 md:py-32 text-primary-green relative"
   >
-    <div class="flex flex-col-reverse lg:grid lg:grid-cols-2 items-center xl:w-11/12 mx-auto"
+    <div
+      class="flex flex-col-reverse lg:grid lg:grid-cols-2 items-center xl:w-11/12 mx-auto"
     >
       <div>
         <h1
@@ -18,35 +21,42 @@
         >
           Welcome to <br />Planet Protectors!
         </h1>
-        <p class="mt-2 text-base lg:text-lg font-semibold ">
+        <p class="mt-2 text-base lg:text-lg font-semibold">
           Let&apos;s Learn, Play, and Save the Earth Together!
         </p>
-        <div class="flex mt-2 lg:mt-5 items-center gap-3">
-          <div class="">
+        <div class="flex flex-col sm:flex-row justify-center sm:justify-start mt-3 lg:mt-5 items-center gap-3">
+          <div class="mx-auto sm:mx-0">
             <button
-              class="bg-primary-yellow rounded-full py-2 px-8 drop-shadow-3xl hover:scale-110 transition-all ease-in-out duration-500"
+              class="bg-primary-yellow rounded-full py-2 px-10 drop-shadow-3xl hover:scale-110 transition-all ease-in-out duration-500"
             >
-              <a href="articles#articles" class="text-primary-text font-semibold">Learn</a>
+              <a
+                href="articles#articles"
+                class="text-primary-text font-semibold"
+                >Learn</a
+              >
             </button>
           </div>
-          <div class="">
+          <div class="mx-auto sm:mx-0">
             <button
-              class="bg-primary-yellow rounded-full py-2 px-8 drop-shadow-3xl hover:scale-110 transition-all ease-in-out duration-500"
+              class="bg-primary-yellow rounded-full py-2 px-10 drop-shadow-3xl hover:scale-110 transition-all ease-in-out duration-500"
             >
-              <a href="activities" class="text-primary-text font-semibold">Games</a>
+              <a href="activities" class="text-primary-text font-semibold"
+                >Games</a
+              >
             </button>
           </div>
-          <div class="">
+          <div class="mx-auto sm:mx-0">
             <button
-              class="bg-primary-yellow rounded-full py-2 px-8 drop-shadow-3xl hover:scale-110 transition-all ease-in-out duration-500"
+              class="bg-primary-yellow rounded-full py-2 px-10 drop-shadow-3xl hover:scale-110 transition-all ease-in-out duration-500"
             >
-              <a href="multimedia" class="text-primary-text font-semibold">Watch</a>
+              <a href="multimedia" class="text-primary-text font-semibold"
+                >Watch</a
+              >
             </button>
           </div>
         </div>
       </div>
-      <div
-      >
+      <div>
         <script
           src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs"
           type="module"
@@ -64,55 +74,78 @@
     </div>
   </div>
 </section>
-<section
-  class="container mx-auto px-5 xl:px-0 py-16 sm:py-20 md:py-32 lg:py-40 text-primary-text relative"
->
-  <div class="flex gap-2 items-center justify-center">
-    <img
-      src="{% static 'images/light-bulb.svg' %}"
-      alt="light bulb"
-      class="w-10 h-10"
-    />
-    <h2
-      class="text-3xl md:text-4xl lg:text-5xl font-semibold text-primary-green"
-    >
-      ABOUT US
-    </h2>
-  </div>
+
+
+<!-- About section -->
+<section class="bg-gradient-to-t from-primary-green to-primary-lightGreen relative">
+  <img
+    src="{% static 'images/elements/clouds-overlay.svg' %}"
+    alt="Cloud Overlay"
+    class=" absolute -top-5 sm:-top-10 md:-top-14 lg:-top-24 w-full"
+  />
+
+  <img
+    src="{% static 'images/elements/clouds-overlay.svg' %}"
+    alt="Cloud Overlay"
+    class="absolute -bottom-5 sm:-bottom-10 md:-bottom-14 lg:-bottom-24 w-full"
+  />
+
   <div
-    class="text-base lg:text-lg text-primary-text font-semibold lg:w-2/4 mx-auto mt-3 lg:mt-5"
+    class="container mx-auto px-5 xl:px-0 py-16 sm:py-20 md:py-32 lg:py-56 text-white relative"
   >
-    <p class="text-center">Hello, Little Planet Protectors! 🌱</p>
-    <p class="text-justify my-2 lg:my-5">
-      Did you know that the Earth is like our big, amazing home? From the
-      tallest mountains to the tiniest ants, we all share this wonderful planet.
-      But sometimes, Earth needs our help!
-    </p>
-    <p class="text-justify">
-      That&apos;s where you come in! 🌟 This website will teach you all about
-      climate change, why it&apos;s important, and how you can make a
-      difference.
-    </p>
+    <div class="flex gap-2 items-center justify-center">
+      <img
+        src="{% static 'images/light-bulb.svg' %}"
+        alt="light bulb"
+        class="w-10 h-10"
+      />
+      <h2
+        class="text-3xl md:text-4xl lg:text-5xl font-semibold"
+      >
+        ABOUT US
+      </h2>
+    </div>
+    <div
+      class="text-base lg:text-xl lg:w-2/4 mx-auto mt-3 lg:mt-5"
+    >
+      <p class="text-center font-semibold">Hello, Little Planet Protectors! 🌱</p>
+      <!-- <div class=" mt-5">
+        <p class="font-semibold text-xl">Did you know?</p>
+        <ul class="space-y-1 list-disc list-inside">
+          <li>🌍 Over 8 million tons of plastic end up in the oceans every year, harming wildlife and polluting our beautiful seas.</li>
+          <li>🌱 Trees are superheroes! They absorb carbon dioxide and provide oxygen, helping keep our air clean. In fact, one mature tree can absorb up to 48 pounds of carbon dioxide a year.</li>
+          <li>🐾 Climate change affects animals too! Polar bears, for example, are losing their homes because the ice is melting faster than ever.</li>
+          <li>💡 You can help! By turning off lights when you leave a room, recycling, and using less plastic, you’re already making a big difference!</li>
+        </ul>
+      </div> -->
+      <p class="text-justify my-2 lg:my-5 font-medium">
+        Did you know that the Earth is like our big, amazing home? From the
+        tallest mountains to the tiniest ants, we all share this wonderful
+        planet. But sometimes, Earth needs our help!
+      </p>
+      <p class="text-justify font-medium">
+        That&apos;s where you come in! 🌟 This website will teach you all about
+        climate change, why it&apos;s important, and how you can make a
+        difference.
+      </p>
+      
+    </div>
+  
+    <img
+      src="{% static 'images/tree.svg' %}"
+      alt="tree element"
+      class="hidden lg:flex absolute bottom-0 w-32 left-14 xl:left-32"
+    />
+    <img
+      src="{% static 'images/trees.svg' %}"
+      alt="tree element"
+      class="hidden lg:flex absolute bottom-0 right-14 xl:right-44"
+    />
+    <img
+      src="{% static 'images/elements/earth-with-star.svg' %}"
+      alt="earth with star element"
+      class="hidden lg:flex absolute top-20 right-0 rotate-0 drop-shadow-3xl animate-rotateLoop"
+      />
   </div>
-  <img
-    src="{% static 'images/cloud.svg' %}"
-    alt="tree element"
-    class="hidden lg:flex absolute top-24 w-56 left-5 xl:left-0"
-  />
-  <img
-    src="{% static 'images/sun.svg' %}"
-    alt="tree element"
-    class="hidden lg:flex absolute top-20 w-56 right-5 xl:right-20"
-  />
-  <img
-    src="{% static 'images/tree.svg' %}"
-    alt="tree element"
-    class="hidden lg:flex absolute bottom-0 w-32 left-14 xl:left-44"
-  />
-  <img
-    src="{% static 'images/trees.svg' %}"
-    alt="tree element"
-    class="hidden lg:flex absolute bottom-0 right-14 xl:right-44"
-  />
 </section>
 {% endblock %}

@@ -24,9 +24,20 @@
       tailwind.config = {
         theme: {
           extend: {
+            keyframes: {
+              rotateBackAndForth: {
+                "0%": { transform: "rotate(17deg)" },
+                "50%": { transform: "rotate(0deg)" },
+                "100%": { transform: "rotate(17deg)" },
+              },
+            },
+            animation: {
+              rotateLoop: "rotateBackAndForth 1.5s ease-in-out infinite",
+            },
             backgroundImage: {
               "hero-pattern": `url('{% static "images/background/hero-bg.png" %}')`,
               "hero-articles": `url('{% static "images/background/articles-hero-bg.png" %}')`,
+              contact: `url('{% static "images/background/contact-bg.svg" %}')`,
             },
             dropShadow: {
               "3xl": "0 4px 4px rgba(0, 0, 0, 0.4)",
@@ -39,6 +50,7 @@
                 green: "#267400",
                 lightGreen: "#7CB560",
                 yellow: "#F7C948",
+                blue: "#4A90E2",
                 text: "#484646",
                 textDark: "#1E1E1E",
               },
@@ -47,6 +59,75 @@
         },
       };
 
+      // function startPlaying(iframeId, thumbnailId) {
+      //   // Hide the thumbnail and show the iframe
+      //   document.getElementById(thumbnailId).style.display = "none";
+      //   const iframe = document.getElementById(iframeId);
+      //   iframe.style.display = "block"; // Make the iframe visible
+
+      //   // Trigger fullscreen mode
+      //   openFullScreen(iframeId);
+      // }
+
+      // Open iframe in fullscreen
+      function openFullScreen(iframeId) {
+        const iframe = document.getElementById(iframeId);
+        if (iframe.requestFullscreen) {
+          iframe.requestFullscreen();
+        } else if (iframe.mozRequestFullScreen) {
+          // Firefox
+          iframe.mozRequestFullScreen();
+        } else if (iframe.webkitRequestFullscreen) {
+          // Chrome, Safari, and Opera
+          iframe.webkitRequestFullscreen();
+        } else if (iframe.msRequestFullscreen) {
+          // IE/Edge
+          iframe.msRequestFullscreen();
+        }
+
+        // Listen for the exit fullscreen event to stop the game
+        document.addEventListener("fullscreenchange", onFullScreenExit, false);
+        document.addEventListener(
+          "webkitfullscreenchange",
+          onFullScreenExit,
+          false
+        );
+        document.addEventListener(
+          "mozfullscreenchange",
+          onFullScreenExit,
+          false
+        );
+        document.addEventListener(
+          "msfullscreenchange",
+          onFullScreenExit,
+          false
+        );
+      }
+
+      function startPlaying(iframeId, thumbnailId) {
+    const iframe = document.getElementById(iframeId);
+    const thumbnail = document.getElementById(thumbnailId);
+
+    // Hide the thumbnail and show the iframe
+    thumbnail.style.display = 'none';
+    iframe.classList.remove('hidden');
+  }
+
+      // Stop the game when exiting fullscreen
+      function onFullScreenExit() {
+        if (
+          !document.fullscreenElement &&
+          !document.webkitFullscreenElement &&
+          !document.mozFullScreenElement &&
+          !document.msFullscreenElement
+        ) {
+          const iframe = document.querySelector("iframe");
+          if (iframe) {
+            // Pause the iframe or stop the game (by stopping the video or any active process)
+            iframe.contentWindow.location.reload(); // Reload the game iframe to stop it
+          }
+        }
+      }
       function toggleMenu() {
         const menu = document.getElementById("mobileMenu");
         const overlay = document.getElementById("overlay");
@@ -59,7 +140,7 @@
   <body class="relative">
     <section class="border-b-2 border-primary-green/20">
       <div
-        class="flex py-5 items-center justify-between container mx-auto lg:px-5 xl:px-10"
+        class="flex py-5 items-center justify-between container mx-auto px-5 xl:px-10"
       >
         <a href="/">
           <img
@@ -98,7 +179,7 @@
             Activities
           </a>
           <a
-            href="/multimedia"
+            href="/articles#media"
             class="{% if request.path == '/multimedia' %}border-primary-yellow{% else %}border-transparent{% endif %} hover:border-primary-yellow border-b-2 transition-all ease-in-out duration-500"
           >
             Multimedia
@@ -108,7 +189,7 @@
           <button
             class="bg-primary-yellow rounded-full py-2 px-6 drop-shadow-3xl hover:scale-110 transition-all ease-in-out duration-500"
           >
-            <a href="contact" class="text-primary-text font-semibold"
+            <a href="#contact" class="text-primary-text font-semibold"
               >Contact Us</a
             >
           </button>
@@ -176,14 +257,14 @@
       </a>
       <nav class="mt-24 space-y-4 px-6 text-primary-green font-semibold">
         <a href="/" class="block py-2">Home</a>
-        <a href="about" class="block py-2">About</a>
-        <a href="articles" class="block py-2">Articles</a>
-        <a href="" class="block py-2">Activities</a>
-        <a href="" class="block py-2">Multimedia</a>
+        <a href="/about" class="block py-2">About</a>
+        <a href="/articles" class="block py-2">Articles</a>
+        <a href="/activities" class="block py-2">Activities</a>
+        <a href="/articles#media" class="block py-2">Multimedia</a>
         <button
           class="bg-primary-yellow rounded-full py-2 px-6 drop-shadow-3xl hover:scale-110 transition-all ease-in-out duration-500"
         >
-          <a href="contact" class="text-primary-text font-semibold"
+          <a href="#contact" class="text-primary-text font-semibold"
             >Contact Us</a
           >
         </button>
@@ -196,19 +277,20 @@
       {% endblock %}
     </section>
 
+    <!-- cta -->
     <section class="">
       <div
         class="container mx-auto px-5 xl:px-0 py-16 text-primary-text relative"
       >
-        <div class="grid grid-cols-3 gap-5 lg:w-2/4 xl:w-2/5 mx-auto">
+        <div class="grid grid-cols-3 gap-2 sm:gap-5 lg:w-2/4 xl:w-2/5 mx-auto">
           <a
-            href="activity"
-            class="hover:scale-105 hover:drop-shadow-3xl transition-all ease-in-out duration-500 flex flex-col gap-2 items-center bg-primary-lightGreen border-4 border-primary-green rounded-xl p-5"
+            href="activities"
+            class="hover:scale-105 hover:drop-shadow-3xl transition-all ease-in-out duration-500 flex flex-col gap-2 items-center bg-primary-lightGreen border-4 border-primary-green rounded-xl p-3 sm:p-5"
           >
             <img
               src="{% static 'images/icons/game.svg' %}"
               alt=""
-              class="mx-auto w-20"
+              class="mx-auto w-14 sm:w-20"
             />
             <span
               class="text-primary-textDark font-semibold text-lg text-center"
@@ -217,12 +299,12 @@
           </a>
           <a
             href="articles"
-            class="hover:scale-105 hover:drop-shadow-3xl transition-all ease-in-out duration-500 flex flex-col gap-2 items-center bg-primary-lightGreen border-4 border-primary-green rounded-xl p-5"
+            class="hover:scale-105 hover:drop-shadow-3xl transition-all ease-in-out duration-500 flex flex-col gap-2 items-center bg-primary-lightGreen border-4 border-primary-green rounded-xl p-3 sm:p-5"
           >
             <img
               src="{% static 'images/icons/articles-icon.svg' %}"
               alt=""
-              class="mx-auto w-20"
+              class="mx-auto w-14 sm:w-20"
             />
             <span
               class="text-primary-textDark font-semibold text-lg text-center"
@@ -230,19 +312,146 @@
             >
           </a>
           <a
-            href="multimedia"
-            class="hover:scale-105 hover:drop-shadow-3xl transition-all ease-in-out duration-500 flex flex-col gap-2 items-center bg-primary-lightGreen border-4 border-primary-green rounded-xl p-5"
+            href="/articles#media"
+            class="hover:scale-105 hover:drop-shadow-3xl transition-all ease-in-out duration-500 flex flex-col gap-2 items-center bg-primary-lightGreen border-4 border-primary-green rounded-xl p-3 sm:p-5"
           >
             <img
               src="{% static 'images/icons/multimedia-icon.svg' %}"
               alt=""
-              class="mx-auto w-20"
+              class="mx-auto w-14 sm:w-20"
             />
             <span
               class="text-primary-textDark font-semibold text-lg text-center"
               >Multimedia</span
             >
           </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- contact us -->
+    <section id="contact">
+      <div class="container mx-auto px-5 xl:px-0 py-10 text-white relative">
+        <img
+          src="{% static 'images/elements/stars.svg' %}"
+          alt="stars"
+          class="animate-rotateLoop absolute top-24 left-14 lg:left-20 w-14 md:w-auto"
+        />
+        <img
+          src="{% static 'images/elements/stars.svg' %}"
+          alt="stars"
+          class="animate-rotateLoop absolute bottom-14 lg:bottom-24 w-14 right-20"
+        />
+        <div class="bg-contact w-full bg-cover py-24 bg-top-center">
+          <div class="text-center">
+            <p class="font-medium text-sm mb-2">GET IN TOUCH</p>
+            <h2 class="text-xl md:text-2xl lg:text-3xl font-semibold">
+              Needs Help? Let&apos;s Get in Touch
+            </h2>
+          </div>
+          <div
+            class="flex justify-center px-5 lg:w-2/4 mx-auto mt-5 text-primary-text"
+          >
+            <form action="" class="grid grid-cols-2 w-full gap-5">
+              <input
+                type="text"
+                placeholder="Your Name"
+                class="focus-within:outline-none focus:outline-none rounded-lg px-5 py-3 placeholder:text-sm placeholder:font-medium placeholder:text-[#B9B9B9] w-full"
+              />
+              <input
+                type="text"
+                placeholder="Your Email"
+                class="focus-within:outline-none focus:outline-none rounded-lg px-5 py-3 placeholder:text-sm placeholder:font-medium placeholder:text-[#B9B9B9] w-full"
+              />
+              <input
+                type="text"
+                placeholder="Subject"
+                class="col-span-2 focus-within:outline-none focus:outline-none rounded-lg px-5 py-3 placeholder:text-sm placeholder:font-medium placeholder:text-[#B9B9B9] w-full"
+              />
+              <textarea
+                placeholder="Subject"
+                rows="5"
+                class="col-span-2 focus-within:outline-none focus:outline-none rounded-lg px-5 py-3 placeholder:text-sm placeholder:font-medium placeholder:text-[#B9B9B9] w-full"
+              ></textarea>
+              <div class="col-span-2 flex justify-end">
+                <button
+                  class="rounded-lg bg-primary-yellow py-3 px-14 font-medium hover:scale-105 transition-all ease-in-out duration-500 hover:drop-shadow-3xl"
+                >
+                  Submit
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- footer -->
+    <section class="border-t border-primary-green/40">
+      <div
+        class="container mx-auto py-14 text-primary-text text-center lg:text-left"
+      >
+        <div class="grid lg:grid-cols-2 w-3/4 mx-auto gap-5 lg:gap-0">
+          <div>
+            <a href="/">
+              <img
+                src="{% static 'images/logo.svg'%}"
+                alt=""
+                class="w-28 md:w-auto mx-auto lg:mx-0"
+              />
+            </a>
+            <p class="font-semibold mt-2 text-base md:text-lg">
+              Let&apos;s Keep Protecting Our Planet! 🌍
+            </p>
+            <p class="font-medium lg:w-3/4">
+              Keep learning, playing, and making a difference! Come back soon
+              for more fun and adventures!
+            </p>
+          </div>
+          <div class="flex gap-10 xl:gap-20 justify-center">
+            <div class="space-y-3 w-2/4 xl:w-1/4 text-center">
+              <p class="font-semibold text-base lg:text-lg">Explore More!</p>
+              <div class="flex flex-col gap-2">
+                <a href="/about" class="text-primary-blue font-medium underline"
+                  >About Us</a
+                >
+                <a
+                  href="/activities"
+                  class="text-primary-blue font-medium underline"
+                  >Activities</a
+                >
+                <a
+                  href="#contact"
+                  class="text-primary-blue font-medium underline"
+                  >Contact Us</a
+                >
+              </div>
+            </div>
+            <div class="space-y-3 w-2/4 xl:w-1/4 text-center">
+              <p class="font-semibold text-base lg:text-lg">Learn More!</p>
+              <div class="flex flex-col gap-2">
+                <a
+                  href="/articles"
+                  class="text-primary-blue font-medium underline"
+                  >Articles</a
+                >
+                <a
+                  href="/articles#media"
+                  class="text-primary-blue font-medium underline"
+                  >Multimedia</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="text-center mt-5 lg:mt-10 font-medium text-sm">
+          <p>Want to share your ideas or stories?</p>
+          <p>
+            Ask a parent or teacher to email us at:
+            <span class="text-primary-blue">contact@planetprotectors.com</span>
+          </p>
+          <p class="mt-5">© 2024 Planet Protectors. All rights reserved.</p>
+          <p>Built with love for our planet! 🌎</p>
         </div>
       </div>
     </section>
