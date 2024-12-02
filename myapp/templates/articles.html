@@ -52,7 +52,7 @@
           Articles
         </h2>
       </div>
-      <div class="grid sm:grid-cols-2 xl:w-2/4 mx-auto gap-5 sm:gap-10 mt-5 sm:mt-10">
+      <div class="grid sm:grid-cols-2 xl:w-2/4 mx-auto gap-5 lg:gap-10 mt-5 sm:mt-10">
         {% for item in items %}
             <a href="/article/{{ item.slug }}" class="rounded-3xl bg-primary-lightGreen p-3 border-4 border-primary-green hover:scale-105 transition-all duration-500 ease-in-out hover:drop-shadow-3xl relative">
                 <img src="{% static item.image %}" alt="{{ item.title }}" class="rounded-xl w-full h-56 object-cover sm:h-auto">
@@ -68,7 +68,7 @@
 <!-- multimedia section -->
 <section id="media">
   <div class="container mx-auto px-5 xl:px-0 pt-16  text-center relative">
-    <div class="flex gap-2 items-center justify-start pb-3 border-b-2 border-primary-green/40 w-3/4 mx-auto">
+    <div class="flex gap-2 items-center justify-start pb-3 border-b-2 border-primary-green/40 xl:w-3/4 mx-auto">
       <img
         src="{% static 'images/elements/ribbon.svg' %}"
         alt="Ribbon"
@@ -80,7 +80,7 @@
         Multimedia
       </h2>
     </div>
-    <div class="grid grid-cols-2 lg:w-3/4 mx-auto gap-10 mt-10">
+    <div class="grid sm:grid-cols-2 lg:w-3/4 mx-auto gap-5 lg:gap-10 mt-10">
       {% for media in multimedia %}
           {% if media.tag == 'video' %}
             <iframe src="{{ media.src}}" frameborder="0" class="w-full h-64 rounded-3xl hover:scale-105 transition-all ease-in-out duration-500 hover:drop-shadow-3xl border-4 border-primary-green" allowfullscreen></iframe>

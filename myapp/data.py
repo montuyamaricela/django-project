@@ -21,6 +21,7 @@ ARTICLES = [
             "</ul>"
             "<p>Earth’s climate has constantly been changing — even long before humans came into the picture. However, scientists have observed unusual changes recently. "
             "For example, Earth’s average temperature has been increasing much more quickly than they would expect over the past 150 years.</p>"
+            "<p class='mt-3'>Source: <a href='https://climatekids.nasa.gov/climate-change-meaning/' target='_blank' class='text-primary-blue underline'> Climate Kids NASA</a> </p>"
         ),
         "banner": "images/articles/climate-change-body-image.png"
     },
@@ -42,6 +43,8 @@ ARTICLES = [
         "<p>NASA recently developed some very sensitive instruments to study coral reefs from an airplane flying above the ocean. The "
         "COral Reef Airborne Laboratory (CORAL) uses an instrument called the Portable Remote Imaging Spectrometer (PRISM) to see the condition of reefs. "
         "Scientists will now be able to monitor these reefs and their health. They will be able to measure the amounts of coral, algae, and sand on the ocean floor.</p>"
+        "<p class='mt-3'>Source: <a href='https://climatekids.nasa.gov/coral-bleaching/' target='_blank' class='text-primary-blue underline'> Climate Kids NASA</a> </p>"
+
     ),
     "banner": "images/articles/coral-bleaching-body-image.png"
     },
@@ -61,6 +64,8 @@ ARTICLES = [
             "These heat-trapping gases are called <strong class='text-primary-green'>greenhouse gases</strong>.</p><br>"
             "<p>During the day, the Sun shines through the atmosphere. Earth's surface warms up in the sunlight. At night, Earth's surface cools, releasing heat back into the air. "
             "But some of the heat is trapped by the greenhouse gases in the atmosphere. That's what keeps our Earth a warm and cozy 58 degrees Fahrenheit (14 degrees Celsius), on average.</p>"
+            "<p class='mt-3'>Source: <a href='https://climatekids.nasa.gov/greenhouse-effect/' target='_blank' class='text-primary-blue underline'> Climate Kids NASA</a> </p>"
+
         ),
         "banner": "images/articles/green-house-effect-body-image.png"
     },
@@ -78,7 +83,8 @@ ARTICLES = [
             "<p>Is it usually rainy or usually dry? Is it typically hot or typically cold? A region’s climate is determined by observing its weather over a period of many years—generally 30 years or more.</p><br>"
             "<p>So, for example, one or two weeks of rainy weather wouldn’t change the fact that Phoenix typically has a dry, desert climate. Even though it’s rainy right now, "
             "we still expect Phoenix to be dry because that's what is usually the case.</p><br>"
-            "<p class='mt-4'>Want to know more about the difference between weather and climate? Take a look at this video! <a href='https://youtu.be/vH298zSCQzY' target='_blank' class='text-primary-green underline'>Watch the video</a></p>"
+            "<p class=''>Want to know more about the difference between weather and climate? Take a look at this video! <a href='https://youtu.be/vH298zSCQzY' target='_blank' class='text-primary-green underline'>Watch the video</a></p>"
+            "<p class='mt-3'>Source: <a href='https://climatekids.nasa.gov/climate-change-meaning/' target='_blank' class='text-primary-blue underline'> Climate Kids NASA</a> </p>"        
         ),
         "banner": "images/articles/weather-vs-climate-body-image.png"
     },
@@ -107,14 +113,14 @@ multimedia = [
 
 games = [
     {
-        "title": "Dash for Trash",
+        "title": "Clean Up the Earth",
         "thumbnail": "images/thumbnails/dash-for-trash.png", 
-        "link": "https://html-classic.itch.zone/html/10196267/final_dash4trash/index.html?embed=1"
+        "link": "https://html5.gamedistribution.com/8880f163d48d45668b0e45dbfb1ab6b9/?gd_sdk_referrer_url=https://www.cokogames.com/clean-up-the-earth/play/"
     },
     {
-        "title": "Sailors",
+        "title": "Twin the Bin",
         "thumbnail": "images/thumbnails/sailors.png", 
-        "link": "https://html-classic.itch.zone/html/10153436/webglpractice/index.html?embed=1"
+        "link": "https://www.cokitos.com/juegos/twin-the-bin/"
     },
     {
         "title": "The Clean Sea Crew",
