@@ -10,11 +10,13 @@
     class="container mx-auto px-5 xl:px-0 pt-16 sm:pt-20 text-white text-center relative"
   >
     <div>
-      <p class="text-left text-primary-text/70 font-medium uppercase text-sm lg:text-base">
-        <span>
+      <p class="text-left text-primary-green/60 font-medium uppercase  text-sm lg:text-base">
+        <span class="">
           <a href="/articles" class="">Article</a>
         </span>
-        / {{article.title}}
+        / <span class="text-primary-green font-semibold">
+          {{article.title}}
+        </span>
       </p>
       <h1 class="text-center text-primary-green text-3xl md:text-4xl font-semibold mt-2">
         {{ article.title }}
@@ -40,7 +42,7 @@
       </h2>
     </div>
     <div
-      class="grid sm:grid-cols-2 xl:w-2/4 mx-auto gap-5 sm:gap-10 mt-5 sm:mt-10"
+      class="grid sm:grid-cols-2 xl:w-3/4 mx-auto gap-5 sm:gap-8 mt-5 sm:mt-10"
     >
       {% for item in articles %}
       <a
@@ -50,7 +52,7 @@
         <img
           src="{% static item.image %}"
           alt="{{ item.title }}"
-          class="rounded-xl w-full h-56 object-cover sm:h-auto"
+          class="rounded-xl w-full h-56 object-cover sm:h-72"
         />
         <div
           class="absolute bottom-5 left-5 bg-primary-yellow px-4 py-3 rounded-xl font-semibold drop-shadow-3xl"

@@ -2,34 +2,56 @@
 
 {% load static %} 
 
-{% block title %}
-Activity Page
-{% endblock %}
+{% block title %} Activity Page {% endblock %} 
 
 {% block content %}
 <section>
-  <div class="container mx-auto px-5 xl:px-0 pt-16 sm:pt-20 md:pt-32  text-primary-text relative">
+  <div
+    class="container mx-auto px-5 xl:px-0 pt-16 sm:pt-20 md:pt-32 text-primary-text relative"
+  >
     <div class="text-center">
-        <h2
+      <h2
         class="text-3xl md:text-4xl lg:text-5xl font-semibold text-primary-green"
       >
         Play, Learn, and Protect the Earth
       </h2>
-      <p class="lg:w-2/4 mx-auto text-lg mt-3 font-medium">Explore games designed to teach kids about climate change and the steps we can take to protect our planet. Learn how you can be part of the solution while having fun!</p>
+      <p class="lg:w-2/4 mx-auto text-lg mt-3 font-medium">
+        Explore games designed to teach kids about climate change and the steps
+        we can take to protect our planet. Learn how you can be part of the
+        solution while having fun!
+      </p>
     </div>
-    
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full mx-auto mt-10">
+
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 w-full mx-auto mt-10"
+    >
       {% for activity in activities %}
-      <div class="flex flex-col items-center bg-primary-lightGreen drop-shadow-3xl rounded-3xl border-4 border-primary-green overflow-hidden hover:scale-105 transition-all ease-in-out duration-500">
-        <h3 class="text-lg font-medium text-center py-4 text-white">{{ activity.title }}</h3>
 
-        <div id="thumbnail-{{ forloop.counter }}" class="w-full h-60 bg-cover bg-center relative"
-            style="background-image: url('{% static activity.thumbnail %}');">
-        <div class="absolute inset-0 "></div> <!-- Overlay -->
+      <div
+        class="flex flex-col items-center  rounded-3xl border-4 border-primary-green overflow-hidden hover:scale-105 transition-all ease-in-out duration-500 hover:shadow-2xl"
+      >
+        <div class="bg-primary-lightGreen w-full">
+          <h3 class="text-lg font-medium text-center py-4 text-white">
+            {{ activity.title }}
+          </h3>
+        </div>
 
+        <div>
+          <img
+            id="thumbnail-{{ forloop.counter }}"
+            src="{% static activity.thumbnail %}"
+            alt="{{activity.title}}"
+            class="h-44 md:h-60 object-cover object-top w-[500px]"
+          />
+        </div>
+        <div
+          id="thumbnail-{{ forloop.counter }}"
+          class="w-full p-7 bg-cover bg-top relative"
+        >
+          <p class="lg:min-h-24 lg:max-h-24">{{activity.description}}</p>
           <button
             onclick="startPlaying('iframe-{{ forloop.counter }}', 'thumbnail-{{ forloop.counter }}')"
-            class="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-primary-yellow text-primary-text font-semibold py-2 px-10 rounded-lg"
+            class="mt-5 w-full bg-primary-yellow text-primary-text font-semibold py-2 px-10 rounded-lg"
             aria-label="Start playing {{ activity.title }}"
           >
             Start Playing
@@ -56,36 +78,50 @@ Activity Page
     const thumbnail = document.getElementById(thumbnailId);
 
     // Hide thumbnail and show iframe
-    thumbnail.style.display = 'none';
-    iframe.classList.remove('hidden');
+    thumbnail.style.display = "none";
+    iframe.classList.remove("hidden");
 
     // Request fullscreen for iframe
     if (iframe.requestFullscreen) {
       iframe.requestFullscreen();
-    } else if (iframe.mozRequestFullScreen) { // Firefox
+    } else if (iframe.mozRequestFullScreen) {
+      // Firefox
       iframe.mozRequestFullScreen();
-    } else if (iframe.webkitRequestFullscreen) { // Chrome, Safari, Opera
+    } else if (iframe.webkitRequestFullscreen) {
+      // Chrome, Safari, Opera
       iframe.webkitRequestFullscreen();
-    } else if (iframe.msRequestFullscreen) { // IE/Edge
+    } else if (iframe.msRequestFullscreen) {
+      // IE/Edge
       iframe.msRequestFullscreen();
     }
 
     // Add fullscreen change event listener
-    document.addEventListener('fullscreenchange', () => handleFullscreenExit(iframe, thumbnail));
-    document.addEventListener('webkitfullscreenchange', () => handleFullscreenExit(iframe, thumbnail));
-    document.addEventListener('mozfullscreenchange', () => handleFullscreenExit(iframe, thumbnail));
-    document.addEventListener('MSFullscreenChange', () => handleFullscreenExit(iframe, thumbnail));
+    document.addEventListener("fullscreenchange", () =>
+      handleFullscreenExit(iframe, thumbnail)
+    );
+    document.addEventListener("webkitfullscreenchange", () =>
+      handleFullscreenExit(iframe, thumbnail)
+    );
+    document.addEventListener("mozfullscreenchange", () =>
+      handleFullscreenExit(iframe, thumbnail)
+    );
+    document.addEventListener("MSFullscreenChange", () =>
+      handleFullscreenExit(iframe, thumbnail)
+    );
   }
 
   function handleFullscreenExit(iframe, thumbnail) {
-    if (!document.fullscreenElement && 
-        !document.webkitFullscreenElement && 
-        !document.mozFullScreenElement && 
-        !document.msFullscreenElement) {
+    if (
+      !document.fullscreenElement &&
+      !document.webkitFullscreenElement &&
+      !document.mozFullScreenElement &&
+      !document.msFullscreenElement
+    ) {
       // When fullscreen is exited, hide iframe and show thumbnail
-      iframe.classList.add('hidden');
-      thumbnail.style.display = 'block';
+      iframe.classList.add("hidden");
+      thumbnail.style.display = "block";
     }
   }
 </script>
+
 {% endblock %}

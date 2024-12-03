@@ -109,34 +109,62 @@ multimedia = [
             "src": 'https://www.youtube.com/embed/SN5-DnOHQmE?si=qC_Sa7V-mjmISHPy',
             "tag": "video"
         },
+        {
+            "src": 'images/multimedia/climate-change.png',
+            "title": "Climate Change",
+            "link": 'https://climatekids.nasa.gov/climate-change-evidence/',
+            "tag": "image"
+        },
+        {
+            "src": 'images/multimedia/air-pollution.png',
+            "title": "Air Pollution",
+            "link": 'https://climatekids.nasa.gov/air-pollution/',
+            "tag": "image"
+        },
+        {
+            "src": 'images/multimedia/climate-model.png',
+            "title": "Climate Model",
+            "link": 'https://climatekids.nasa.gov/climate-model/',
+            "tag": "image"
+        },
+        {
+            "src": 'images/multimedia/climate-ocean.png',
+            "title": "Climate Change Affects the Ocean",
+            "link": 'https://climatekids.nasa.gov/ocean/',
+            "tag": "image"
+        },
     ]
 
 games = [
     {
         "title": "Clean Up the Earth",
-        "thumbnail": "images/thumbnails/dash-for-trash.png", 
+        "thumbnail": "images/thumbnails/clean-up-the-earth.png", 
+        "description": "Clean Up Planet Earth is an engaging online game where players tackle environmental challenges through fun mini-games. Clean the sea, recycle waste, shut down polluting factories, and extinguish forest fires.",
         "link": "https://html5.gamedistribution.com/8880f163d48d45668b0e45dbfb1ab6b9/?gd_sdk_referrer_url=https://www.cokogames.com/clean-up-the-earth/play/"
     },
     {
         "title": "Twin the Bin",
-        "thumbnail": "images/thumbnails/sailors.png", 
+        "thumbnail": "images/thumbnails/twin-the-bin.png", 
+        "description": "Twin the Bin is a fun recycling game where kids move a character with a garbage can to collect specific waste types like plastic or paper. Learn to sort and recycle while protecting the environment!",
         "link": "https://www.cokitos.com/juegos/twin-the-bin/"
     },
     {
-        "title": "The Clean Sea Crew",
-        "thumbnail": "images/thumbnails/clean-sea-crew.png", 
-        "link": "https://html-classic.itch.zone/html/10104557/Build%202.0/index.html?embed=1"
+        "title": "Interactive Recycling",
+        "thumbnail": "images/thumbnails/recycling-time.png", 
+        "description": "Interactive Recycling for Kids is an online game where players sort waste into 5 bins: glass, metal, paper, plastic, and organic. Drag items like bottles, cans, and food scraps to the correct bin and learn recycling basics!",
+        "link": "https://html5.gamedistribution.com/57dc1702f3e84cbfa81be77362065eea/?gd_sdk_referrer_url=https://www.cokogames.com/interactive-recycling/play/"
     },
     {
-        "title": "OceanSmart Games For Change",
-        "thumbnail": "images/thumbnails/oceansmart.png", 
-
-        "link": "https://html-classic.itch.zone/html/10195549/index.html?embed=1"
+        "title": "Trash Sorting",
+        "thumbnail": "images/thumbnails/trash-sort.png", 
+        "description": "Sort waste into the correct bins—organic, plastic, glass, or paper—in this fun recycling game. Learn and practice recycling while playing!",
+        "link": "https://www.cokitos.com/juegos/trash-sorting/"
     },
     {
-        "title": "The Sustainable Society Club!",
-        "thumbnail": "images/thumbnails/society-club.png", 
-        "link": "https://html-classic.itch.zone/html/11347764/WebGL/index.html?embed=1"
+        "title": "Clean the Ocean of Polution",
+        "thumbnail": "images/thumbnails/clean-ocean.png", 
+        "description": "Clean the ocean by quickly spotting and recycling waste like cans and plastics. Test your speed and focus in this fast-paced online skill game. Save the ocean before time runs out!",
+        "link": "//html5.gamedistribution.com/rvvASMiM/a1caf0b7e62d422690ee8f30b8029245/index.html?gd_zone_config=eyJwYXJlbnRVUkwiOiJodHRwczovL3d3dy5jb2tvZ2FtZXMuY29tLyIsInBhcmVudERvbWFpbiI6ImNva29nYW1lcy5jb20iLCJ0b3BEb21haW4iOiJjb2tvZ2FtZXMuY29tIiwiaGFzSW1wcmVzc2lvbiI6dHJ1ZSwibG9hZGVyRW5hYmxlZCI6dHJ1ZSwiaG9zdCI6Imh0bWw1LmdhbWVkaXN0cmlidXRpb24uY29tIiwidmVyc2lvbiI6IjEuNS4xNyJ9"
     }
 
 ]
